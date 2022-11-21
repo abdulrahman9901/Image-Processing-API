@@ -4,11 +4,10 @@ const app = express();
 
 const port = 3000;
 
-const getPort = ():number => port
+const getPort = (): number => port;
 
-app.use('/',routes)
+app.use('/', routes);
 
 app.listen(port, () => console.log(`server running on port ${port}`));
 
-
-export {app,getPort};
+export { app, getPort };

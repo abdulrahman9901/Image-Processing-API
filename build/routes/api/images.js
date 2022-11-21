@@ -14,15 +14,64 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const sharp_1 = __importDefault(require("sharp"));
+const fs_1 = require("fs");
 const images = express_1.default.Router();
 images.get('/images', function (req, res) {
     const filename = req.query.filename;
-    const height = req.query.height;
-    const width = req.query.width;
-    const image = (0, sharp_1.default)('./assets/full/encenadaport.jpg');
-    image.resize(200, 200).toFile('./assets/thumb/encenadaport-thumb.jpg').then((data) => __awaiter(this, void 0, void 0, function* () {
-        console.log(data);
-    }));
-    res.send({ filename, height, width });
+    const height = +req.query.height;
+    const width = +req.query.width;
+    const sendImage = (res, image) => {
+        res.setHeader('Content-Type', 'image/jpg');
+        res.setHeader('Content-Length', ''); // Image size here
+        res.setHeader('Access-Control-Allow-Origin', '*'); // If needs to be public
+        res.send(image);
+    };
+    fs_1.promises
+        .readFile(`./assets/full/${filename}.jpg`)
+        .then(() => {
+        const OriginalImage = (0, sharp_1.default)(`./assets/full/${filename}.jpg`);
+        if (height <= 0 || width <= 0) {
+            res.send('Not valid dimension');
+        }
+        fs_1.promises
+            .readFile(`./assets/thumb/${filename}-thumb.jpg`)
+            .then((image) => {
+            const img = (0, sharp_1.default)(image);
+            img
+                .metadata()
+                .then((data) => {
+                return data;
+            })
+                .then((info) => {
+                if ((info.width == width, info.height == height)) {
+                    console.log('Already processed');
+                    sendImage(res, image);
+                }
+                else {
+                    OriginalImage.resize(width, height)
+                        .toFile(`./assets/thumb/${filename}-thumb.jpg`)
+                        .then(() => __awaiter(this, void 0, void 0, function* () {
+                        console.log('Already processed but with different dimensions');
+                        const myFile = yield fs_1.promises.readFile(`./assets/thumb/${filename}-thumb.jpg`);
+                        sendImage(res, myFile);
+                    }));
+                }
+            });
+        })
+            .catch(() => OriginalImage.resize(width, height)
+            .toFile(`./assets/thumb/${filename}-thumb.jpg`)
+            .then(() => __awaiter(this, void 0, void 0, function* () {
+            console.log('not processed .');
+            const myFile = yield fs_1.promises.readFile(`./assets/thumb/${filename}-thumb.jpg`);
+            sendImage(res, myFile);
+        }))
+            .catch(() => {
+            res.send('Not valid dimension');
+        }));
+    })
+        .catch(() => {
+        res.status(404);
+        res.send('Image Not Found');
+    });
 });
 exports.default = images;

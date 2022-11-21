@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const index_1 = require("../index");
-describe("basic test ", () => {
-    it('should return 3000 ', () => {
+describe('server tests ', () => {
+    it('should return 3000  (Server works)', () => {
         expect((0, index_1.getPort)()).toBe(3000);
     });
 });

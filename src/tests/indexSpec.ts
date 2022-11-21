@@ -1,7 +1,7 @@
-import {getPort} from'../index'
+import { getPort } from '../index';
 
-describe("basic test ",()=>{
-    it ('should return 3000 ', () => {
-        expect(getPort()).toBe(3000);
-    });   
-})
+describe('server tests ', () => {
+  it('should return 3000  (Server works)', () => {
+    expect(getPort()).toBe(3000);
+  });
+});
