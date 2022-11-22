@@ -5,9 +5,8 @@
   "main": "index.j npm i typescript --save-devs",
   "dependencies": {
     "express": "^4.18.2",
-    "jasmine-spec-reporter": "^7.0.0",
     "sharp": "^0.31.2",
-    "supertest": "^6.3.1"
+    "ts-node": "^10.9.1"
   },
   "devDependencies": {
     "@types/eslint": "^8.4.10",
@@ -25,8 +24,10 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "jasmine": "^4.5.0",
+    "jasmine-spec-reporter": "^7.0.0",
     "nodemon": "^2.0.20",
     "prettier": "^2.7.1",
+    "supertest": "^6.3.1",
     "typescript": "^4.9.3"
   },
   "scripts": {
@@ -35,7 +36,8 @@
     "prettier": "prettier --config .prettierrc src/**/*.ts --write",
     "build": "npx tsc",
     "jasmine": "jasmine",
-    "start": "nodemon src/index.ts"
+    "start-dev": "nodemon src/index.ts",
+    "start-prod": "ts-node build/."
   },
   "author": "Abdulrahman Badr",
   "license": "ISC"

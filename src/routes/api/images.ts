@@ -1,81 +1,57 @@
 import express from 'express';
-import sharp from 'sharp';
-import { promises as fsPromises } from 'fs';
+import { promises as fsPromises ,constants } from 'fs';
 import { Request, Response } from 'express';
 
+import { Imageprocessing } from '../../utilities';
+
+function checkFileExists(file:string):Promise<boolean> {
+  return fsPromises.access(file, constants.F_OK)
+           .then(() => true)
+           .catch(() => false)
+}
 const images = express.Router();
 
-images.get('/images', function (req: Request, res: Response): void {
+const validateData = async (filename:string ,inwidth:string , inheight:string): Promise<null | string> =>{
+      if(!(await checkFileExists(`./assets/full/${filename}.jpg`))){
+        return  "Please provide a valid filename";
+      }
+
+      if (!inwidth && !inheight) {
+        return null; // No size values
+      }
+    
+      // Check for valid width value
+      const width: number = parseInt(inwidth || '');
+      console.log(width)
+      if (Number.isNaN(width) || width < 1) {
+        return "Please provide a positive numerical value for image width.";
+      }
+    
+      // Check for valid height value
+      const height: number = parseInt(inheight || '');
+      if (Number.isNaN(height) || height < 1) {
+        return "Please provide a positive numerical value for image height.";
+      }   
+      return null;
+}
+images.get('/images', async (req: Request, res: Response):Promise<void> => {
+
+  const NotvalidData: null | string  = await validateData(req.query.filename,req.query.width,req.query.height);
+  if(NotvalidData) {
+    console.log(NotvalidData)
+    res.send(NotvalidData);
+    return;
+  }
+
   const filename: string = req.query.filename;
   const height: number = +req.query.height;
   const width: number = +req.query.width;
 
-  const sendImage = (res: Response, image: Buffer): void => {
-    res.setHeader('Content-Type', 'image/jpg');
-    res.setHeader('Content-Length', ''); // Image size here
-    res.setHeader('Access-Control-Allow-Origin', '*'); // If needs to be public
-    res.send(image);
-  };
+  res.setHeader('Content-Type', 'image/jpg');
+  res.setHeader('Content-Length', ''); // Image size here
+  res.setHeader('Access-Control-Allow-Origin', '*'); // If needs to be public
+  res.send(await Imageprocessing(filename,width,height));
 
-  fsPromises
-    .readFile(`./assets/full/${filename}.jpg`)
-    .then(() => {
-      const OriginalImage = sharp(`./assets/full/${filename}.jpg`);
-      if (height <= 0 || width <= 0) {
-        res.send('Not valid dimension');
-      }
-      fsPromises
-        .readFile(`./assets/thumb/${filename}-thumb.jpg`)
-        .then((image) => {
-          const img = sharp(image);
-          img
-            .metadata()
-            .then((data) => {
-              return data;
-            })
-            .then((info) => {
-              if ((info.width == width, info.height == height)) {
-                console.log('Already processed');
-
-                sendImage(res, image);
-              } else {
-                OriginalImage.resize(width, height)
-                  .toFile(`./assets/thumb/${filename}-thumb.jpg`)
-                  .then(async () => {
-                    console.log(
-                      'Already processed but with different dimensions'
-                    );
-
-                    const myFile = await fsPromises.readFile(
-                      `./assets/thumb/${filename}-thumb.jpg`
-                    );
-
-                    sendImage(res, myFile);
-                  });
-              }
-            });
-        })
-        .catch(() =>
-          OriginalImage.resize(width, height)
-            .toFile(`./assets/thumb/${filename}-thumb.jpg`)
-            .then(async () => {
-              console.log('not processed .');
-
-              const myFile = await fsPromises.readFile(
-                `./assets/thumb/${filename}-thumb.jpg`
-              );
-
-              sendImage(res, myFile);
-            })
-            .catch(() => {
-              res.send('Not valid dimension');
-            })
-        );
-    })
-    .catch(() => {
-      res.status(404);
-      res.send('Image Not Found');
-    });
 });
 
 export default images;

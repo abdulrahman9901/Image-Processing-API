@@ -22,10 +22,14 @@ describe('Test endpoint responses', () => {
     })),
         it('Should return 404 Not Found (Image Not Found )', () => __awaiter(void 0, void 0, void 0, function* () {
             const response = yield request.get('/api/images?filename=0&height=100&width=500');
-            expect(response.status).toBe(404);
+            expect(response.text).toEqual("Please provide a valid filename");
         }));
-    it('Should return Not valid dimension ', () => __awaiter(void 0, void 0, void 0, function* () {
+    it('Should return Not valid width ', () => __awaiter(void 0, void 0, void 0, function* () {
+        const response = yield request.get('/api/images?filename=icelandwaterfall&height=100');
+        expect(response.text).toEqual("Please provide a positive numerical value for image width.");
+    }));
+    it('Should return Not valid height ', () => __awaiter(void 0, void 0, void 0, function* () {
         const response = yield request.get('/api/images?filename=icelandwaterfall&height=0&width=500');
-        expect(response.status).toBe(200);
+        expect(response.text).toEqual("Please provide a positive numerical value for image height.");
     }));
 });

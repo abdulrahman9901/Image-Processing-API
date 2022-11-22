@@ -55,12 +55,17 @@ build the project
   npm run build
 ```
 
-Start the server
+Start the server on development mode
 
 ```bash
-  npm run start
+  npm run start-dev
 ```
 
+Start the server on production mode
+
+```bash
+  npm run start-prod
+```
 
 ## Running Tests
 

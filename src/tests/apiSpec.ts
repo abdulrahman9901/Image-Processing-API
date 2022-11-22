@@ -14,12 +14,18 @@ describe('Test endpoint responses', () => {
       const response = await request.get(
         '/api/images?filename=0&height=100&width=500'
       );
-      expect(response.status).toBe(404);
+      expect(response.text).toEqual("Please provide a valid filename");
     });
-  it('Should return Not valid dimension ', async () => {
+  it('Should return Not valid width ', async () => {
+    const response = await request.get(
+      '/api/images?filename=icelandwaterfall&height=100'
+    );
+    expect(response.text).toEqual("Please provide a positive numerical value for image width." );
+  });
+  it('Should return Not valid height ', async () => {
     const response = await request.get(
       '/api/images?filename=icelandwaterfall&height=0&width=500'
     );
-    expect(response.status).toBe(200);
+    expect(response.text).toEqual("Please provide a positive numerical value for image height." );
   });
 });
