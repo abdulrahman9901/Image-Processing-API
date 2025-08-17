@@ -1,0 +1,55 @@
+full_name,description,predominant_language,topics,stars,forks,open_issues,watchers,size_kb,created_at,updated_at,pushed_at,license,categories
+abdulrahman9901/Image-Processing-API,,JavaScript,,0,0,0,0,10696,2022-11-21T21:46:04Z,2025-08-16T15:09:47Z,2024-06-19T01:10:33Z,,Web Backend
+abdulrahman9901/Concurrent-Traffic-Simulation,,C++,,0,0,0,0,17226,2020-05-16T04:21:14Z,2025-08-16T15:09:40Z,2020-05-16T04:27:19Z,,C++/Systems
+abdulrahman9901/Data-Structures-and-Algorithms-,"Learning Algorithms through Programming and Puzzle Solving. Ace coding interviews by implementing each algorithmic challenge in this Specialization. Apply the newly-learned algorithmic techniques to real-life problems, such as analyzing a huge social network or sequencing a genome of a deadly pathogen. ",,,0,0,0,0,1467,2024-04-20T15:27:06Z,2025-08-16T15:09:34Z,2024-04-20T15:48:26Z,,Algorithms/DSA;Coursework/Certs
+abdulrahman9901/Development-of-Secure-Embedded-Systems-Specialization,,C,,0,0,0,0,20452,2024-07-04T06:04:19Z,2025-08-16T15:08:25Z,2024-07-04T06:32:14Z,,Embedded Systems;Coursework/Certs
+abdulrahman9901/Microwave-Oven-SW-Design,,,,0,0,0,0,158,2024-07-07T08:59:42Z,2025-08-16T15:07:46Z,2024-07-07T11:02:39Z,,Embedded Systems
+abdulrahman9901/Task-Management-System,Task Management Application,TypeScript,javascript;nextjs;prisma;scass;task-management;typescript,0,0,0,0,544,2024-08-27T09:58:02Z,2025-08-16T15:06:55Z,2024-09-09T18:20:09Z,,Web Frontend/React
+abdulrahman9901/Hack-Assembler,,C++,,0,0,0,0,273,2021-02-07T13:19:44Z,2025-08-09T16:36:45Z,2023-03-16T18:52:17Z,Apache-2.0,Compilers/Systems
+abdulrahman9901/abdulrahman9901,Config files for my GitHub profile.,,config;github-config,0,0,0,0,22,2022-10-17T12:55:37Z,2025-07-13T16:46:20Z,2025-07-13T16:46:17Z,,Misc
+abdulrahman9901/LeetCode-solutions,This repository is managed by LeetPush extension: https://github.com/husamahmud/LeetPush,C++,,0,0,0,0,698,2024-07-06T06:07:56Z,2024-10-01T22:03:01Z,2024-10-01T22:02:58Z,,Algorithms/DSA
+abdulrahman9901/Nextjs-Fiverr-Clone,,,,0,0,0,0,1,2024-08-26T15:58:15Z,2024-08-26T15:58:19Z,2024-08-26T15:58:16Z,MIT,Web Frontend/React
+abdulrahman9901/Sortable-Todo-List-,,JavaScript,,0,0,0,0,204,2024-07-24T10:27:11Z,2024-07-24T10:40:54Z,2024-07-24T10:37:46Z,,Web Frontend/React
+abdulrahman9901/Leetcode-Downloader,,Python,,0,0,0,0,32,2024-07-06T08:11:58Z,2024-07-08T13:34:26Z,2024-07-08T13:34:22Z,,Algorithms/DSA;Utilities/Starters
+abdulrahman9901/ExpressJs-Starter-Code,It's Starter Code/Template for ExpressJs projects equipped with basic needs for starting development easier with less effort and time in setup,TypeScript,,0,0,0,0,44,2024-06-23T19:52:32Z,2024-06-23T21:10:04Z,2024-06-23T21:10:01Z,,Web Backend;Utilities/Starters
+abdulrahman9901/forage-jpmc-swe-task-3,Starter repo for task 3 of JPMC's Forage program,Python,,0,0,0,0,657,2024-06-03T11:52:03Z,2024-06-03T18:45:21Z,2024-06-03T18:45:13Z,,Utilities/Starters;Coursework/Certs
+abdulrahman9901/forage-jpmc-swe-task-2,Starter repo for task 2 of JPMC's forage program,Python,,0,0,0,0,409,2024-05-31T20:16:23Z,2024-06-03T11:48:00Z,2024-06-03T11:47:50Z,,Utilities/Starters;Coursework/Certs
+abdulrahman9901/forage-jpmc-swe-task-1,Starter repo for task 1 of the JPMC software engineering program,Python,,0,0,0,0,37,2024-05-31T18:38:41Z,2024-05-31T20:03:22Z,2024-05-31T20:03:17Z,,Utilities/Starters;Coursework/Certs
+abdulrahman9901/Ruby-Blog,,Ruby,,0,0,0,0,236,2024-05-24T10:18:44Z,2024-05-29T13:09:44Z,2024-05-29T13:09:41Z,,Other Web Frameworks
+abdulrahman9901/Job-Listing-App,,JavaScript,,0,0,0,0,629,2024-04-24T00:03:46Z,2024-04-24T00:33:29Z,2024-04-24T00:33:27Z,,Misc
+abdulrahman9901/Stats-preview-card-Component,his is a solution to the Stats preview card component challenge on Frontend Mentor,CSS,,0,0,0,0,925,2024-04-21T20:13:18Z,2024-04-21T20:26:48Z,2024-04-21T20:26:44Z,,Web Frontend/React
+abdulrahman9901/QR-code-Component,it's a react component for displaying QR code,JavaScript,,0,0,0,0,260,2024-04-19T22:39:07Z,2024-04-19T23:15:18Z,2024-04-19T23:07:36Z,,Web Frontend/React
+abdulrahman9901/Rock-paper-scissors,,JavaScript,,0,0,0,0,1316,2024-04-06T23:13:50Z,2024-04-06T23:19:32Z,2024-04-07T00:10:47Z,,Games/Interactive
+abdulrahman9901/Lets-Chat,it's a chat app that uses chat groups ,JavaScript,channels;chat;chat-application;django;django-rest-framework;fullstack;javascript;orm;python;react;reactredux;real-time;sqlite-database;websocket,1,0,0,1,33136,2022-09-29T01:50:51Z,2024-02-08T10:50:05Z,2023-08-28T14:11:43Z,MIT,Web Frontend/React;Other Web Frameworks;Realtime/Networking
+abdulrahman9901/Runway-Detection-System,Runway Detection System,C,,0,0,0,0,66461,2024-02-02T13:02:34Z,2024-02-02T13:23:56Z,2024-02-02T13:23:47Z,,Computer Vision/ML
+abdulrahman9901/IP-Tracker,"it's IP Tracker that uses multiple APIs for getting the data of an ip (country , region , timezone , currency , ISP , coordinates ...etc ) then dispaly them and  using a map api we show ip's location on the map .",JavaScript,,0,0,0,0,1422,2023-10-13T14:30:54Z,2024-01-09T07:35:50Z,2024-01-09T07:35:09Z,,Web Backend;Computer Vision/ML
+abdulrahman9901/World-Countries,,JavaScript,,0,0,0,0,3407,2023-11-22T22:00:23Z,2024-01-01T18:34:38Z,2024-01-04T22:12:40Z,,Web Frontend/React
+abdulrahman9901/Tindog,It's a landing page for Tinder-like mobile app for dogs .,HTML,css;frontend;html;javascript;landing-page;website,0,0,0,0,4546,2023-09-18T22:03:50Z,2023-09-20T15:45:09Z,2023-09-20T16:15:29Z,,Web Frontend/React
+abdulrahman9901/Hack-Compiler,,C++,,0,0,0,0,710,2023-07-14T12:24:52Z,2023-07-14T12:28:43Z,2023-07-14T12:28:37Z,,Compilers/Systems
+abdulrahman9901/Travel-Agency,,HTML,,0,0,0,0,3360,2023-01-24T22:05:37Z,2023-07-02T11:35:32Z,2023-07-02T11:26:25Z,,Misc
+abdulrahman9901/Random-Quote-Machine,,JavaScript,,0,0,0,0,64,2021-03-31T17:43:06Z,2023-03-28T05:57:29Z,2023-07-02T11:22:54Z,,Misc
+abdulrahman9901/Blinking-LED,Utalizing the peripherals of ARM Cortex v4 Architechture and tm4c123 (Tiva C) Microcontroller to build a Runtime Configurable Blinking LEDs Mcal/HAL and App layers ,C,,0,0,0,0,36,2023-03-25T19:46:44Z,2023-03-25T19:49:04Z,2023-03-25T19:49:50Z,MIT,Embedded Systems
+abdulrahman9901/Implementing-EDF-Scheduler, implementation of EDF scheduler based on FreeRTOS and testing OS Performance. ,C,,0,0,0,0,1244,2023-03-25T19:36:46Z,2023-03-25T19:38:14Z,2023-03-25T19:53:05Z,MIT,Embedded Systems
+abdulrahman9901/Automotive-door-control-system-design,"Embedded system design for two ECUs communicating together to control car lights according to door state, light switch state, and car speed state ",,,0,0,0,0,444,2023-03-25T19:32:52Z,2023-03-25T19:32:52Z,2023-03-25T19:55:37Z,,Embedded Systems
+abdulrahman9901/Virtual-Machine-Translator,,C++,,0,0,0,0,2140,2022-12-27T04:22:05Z,2023-02-09T00:46:06Z,2023-02-09T00:58:34Z,,Compilers/Systems
+abdulrahman9901/MyReads-A-Book-Tracking-App,,JavaScript,,0,0,0,0,334,2021-08-19T00:43:48Z,2023-02-05T19:18:27Z,2023-03-16T18:48:23Z,,Web Frontend/React
+abdulrahman9901/Would-You-Rather-app,Created with CodeSandbox,JavaScript,,0,0,0,0,82,2021-09-13T13:08:27Z,2023-01-23T10:30:02Z,2023-03-16T18:46:50Z,,Web Frontend/React
+abdulrahman9901/Speech-Synthesis,it's Simple Speech Synthesis,CSS,,0,0,0,0,4,2023-01-15T15:47:06Z,2023-01-15T15:47:35Z,2023-07-02T12:10:02Z,,Misc
+abdulrahman9901/Drum-Kit,,HTML,,0,0,0,0,1758,2023-01-12T14:56:51Z,2023-01-12T15:02:28Z,2023-01-12T15:02:25Z,,Games/Interactive
+abdulrahman9901/Countdown-Timer,,JavaScript,,0,0,0,0,123,2023-01-12T14:51:22Z,2023-01-12T14:52:36Z,2023-07-02T12:21:54Z,,Misc
+abdulrahman9901/Hosting-a-Full-Stack-Application,,TypeScript,,0,0,0,0,8656,2022-12-31T23:08:17Z,2022-12-31T23:12:22Z,2023-01-01T09:25:57Z,NOASSERTION,Full-Stack
+abdulrahman9901/Storefront-Backend,,JavaScript,,0,0,0,0,78,2022-12-13T14:55:40Z,2022-12-13T14:57:06Z,2022-12-16T15:03:00Z,NOASSERTION,Web Backend
+abdulrahman9901/FWD-Pro-landing-page-project,,HTML,,0,0,0,0,17,2021-03-20T01:28:30Z,2022-09-19T21:21:52Z,2023-03-16T18:50:15Z,,Misc
+abdulrahman9901/Self-Driving-Cars,,Python,,0,0,0,0,13107,2022-09-19T01:04:39Z,2022-09-19T18:37:21Z,2023-03-16T18:18:25Z,MIT,Computer Vision/ML
+abdulrahman9901/Blog_App_using_Django,,,,0,0,0,0,1,2022-08-27T10:28:13Z,2022-08-27T10:28:13Z,2022-08-27T10:28:13Z,MIT,Other Web Frameworks
+abdulrahman9901/FWD-Evaluate-A-News-Article-with-NLP,,JavaScript,,0,0,0,0,159,2021-10-02T23:27:26Z,2021-10-02T23:49:29Z,2023-03-16T18:45:34Z,,Misc
+abdulrahman9901/fend-webpack-sass,Webpack & Sass in the Front End Developer Nanodegree program,,,0,0,0,0,312,2021-09-18T17:56:20Z,2021-09-18T17:56:20Z,2021-08-17T18:25:37Z,,Web Backend;Web Frontend/React
+abdulrahman9901/fend-webpack-content,Webpack Content in the Front End Developer Nanodegree program,,,0,0,0,0,259,2021-09-15T14:15:20Z,2021-09-15T14:15:21Z,2021-08-11T10:07:52Z,,Web Backend;Web Frontend/React
+abdulrahman9901/FWD-Weather-Journal-App,The 2nd project of FWD scholarship ,JavaScript,,0,0,0,0,577,2021-03-29T17:21:20Z,2021-03-29T18:40:58Z,2021-03-29T18:40:56Z,,Misc
+abdulrahman9901/Rock-Paper-Scissors-Game,Rock Paper Scissors Game from first course of Web Applications for Everybody Specialization ,PHP,,0,0,0,0,7,2021-02-07T14:53:51Z,2021-03-28T00:57:40Z,2021-02-07T14:53:57Z,Apache-2.0,Games/Interactive;Coursework/Certs
+abdulrahman9901/Motor-Control-system,Graduation project for NP explore cycle#2 -embedded system training,C,,0,0,0,0,494,2021-02-07T18:06:44Z,2021-03-28T00:56:42Z,2021-02-07T18:11:18Z,,Embedded Systems
+abdulrahman9901/course-JS-and-the-DOM,,,,0,0,0,0,43407,2021-03-12T15:36:12Z,2021-03-12T15:36:14Z,2020-10-22T19:38:25Z,,Coursework/Certs
+abdulrahman9901/Snake-Game,,C++,,0,0,0,0,54,2020-05-16T04:40:59Z,2020-05-16T04:57:25Z,2020-05-16T04:57:23Z,,Games/Interactive
+abdulrahman9901/CppND-Memory-Management-Chatbot-master,,C++,,0,0,0,0,2297,2020-05-10T22:46:02Z,2020-05-11T22:57:29Z,2020-05-11T22:57:26Z,,C++/Systems;Realtime/Networking
+abdulrahman9901/CppND-System-Monitor,,C++,,0,0,0,0,289,2020-05-06T20:08:12Z,2020-05-10T03:09:29Z,2020-05-10T03:09:27Z,,C++/Systems
+abdulrahman9901/Route-Planner,,C++,,0,0,0,0,1266,2020-05-02T19:02:13Z,2020-05-05T03:30:49Z,2020-05-05T03:30:47Z,,Misc
