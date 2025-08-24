@@ -36,16 +36,20 @@ const validateData = async (filename:string ,inwidth:string , inheight:string): 
 }
 images.get('/images', async (req: Request, res: Response):Promise<void> => {
 
-  const NotvalidData: null | string  = await validateData(req.query.filename,req.query.width,req.query.height);
+  const filenameParam = (req.query.filename as string) || '';
+  const widthParam = (req.query.width as string) || '';
+  const heightParam = (req.query.height as string) || '';
+
+  const NotvalidData: null | string  = await validateData(filenameParam,widthParam,heightParam);
   if(NotvalidData) {
     console.log(NotvalidData)
     res.send(NotvalidData);
     return;
   }
 
-  const filename: string = req.query.filename;
-  const height: number = +req.query.height;
-  const width: number = +req.query.width;
+  const filename: string = filenameParam;
+  const height: number = parseInt(heightParam || '');
+  const width: number = parseInt(widthParam || '');
 
   res.setHeader('Content-Type', 'image/jpg');
   res.setHeader('Content-Length', ''); // Image size here
