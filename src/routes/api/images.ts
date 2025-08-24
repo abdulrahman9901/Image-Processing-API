@@ -36,22 +36,48 @@ const validateData = async (filename:string ,inwidth:string , inheight:string): 
 }
 images.get('/images', async (req: Request, res: Response):Promise<void> => {
 
-  const NotvalidData: null | string  = await validateData(req.query.filename,req.query.width,req.query.height);
+  const query = req.query as { filename?: string; width?: string; height?: string };
+  const filename: string = query.filename || '';
+  const widthStr: string = query.width || '';
+  const heightStr: string = query.height || '';
+
+  const NotvalidData: null | string  = await validateData(filename, widthStr, heightStr);
   if(NotvalidData) {
     console.log(NotvalidData)
     res.send(NotvalidData);
     return;
   }
 
-  const filename: string = req.query.filename;
-  const height: number = +req.query.height;
-  const width: number = +req.query.width;
+  const width: number = widthStr ? parseInt(widthStr, 10) : NaN;
+  const height: number = heightStr ? parseInt(heightStr, 10) : NaN;
 
   res.setHeader('Content-Type', 'image/jpg');
   res.setHeader('Content-Length', ''); // Image size here
   res.setHeader('Access-Control-Allow-Origin', '*'); // If needs to be public
   res.send(await Imageprocessing(filename,width,height));
 
+});
+
+images.post('/images', async (req: Request, res: Response): Promise<void> => {
+  const { filename, width, height } = (req.body || {}) as { filename?: string; width?: number | string; height?: number | string };
+
+  const fileParam: string = (filename as string) || '';
+  const widthStr: string = width === undefined || width === null ? '' : String(width);
+  const heightStr: string = height === undefined || height === null ? '' : String(height);
+
+  const validationMessage: null | string = await validateData(fileParam, widthStr, heightStr);
+  if (validationMessage) {
+    res.send(validationMessage);
+    return;
+  }
+
+  const parsedWidth: number = widthStr ? parseInt(widthStr, 10) : NaN;
+  const parsedHeight: number = heightStr ? parseInt(heightStr, 10) : NaN;
+
+  res.setHeader('Content-Type', 'image/jpg');
+  res.setHeader('Content-Length', '');
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.send(await Imageprocessing(fileParam, parsedWidth, parsedHeight));
 });
 
 export default images;

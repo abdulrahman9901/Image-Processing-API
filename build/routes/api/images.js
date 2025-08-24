@@ -42,18 +42,38 @@ const validateData = (filename, inwidth, inheight) => __awaiter(void 0, void 0, 
     return null;
 });
 images.get('/images', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const NotvalidData = yield validateData(req.query.filename, req.query.width, req.query.height);
+    const query = req.query;
+    const filename = query.filename || '';
+    const widthStr = query.width || '';
+    const heightStr = query.height || '';
+    const NotvalidData = yield validateData(filename, widthStr, heightStr);
     if (NotvalidData) {
         console.log(NotvalidData);
         res.send(NotvalidData);
         return;
     }
-    const filename = req.query.filename;
-    const height = +req.query.height;
-    const width = +req.query.width;
+    const width = widthStr ? parseInt(widthStr, 10) : NaN;
+    const height = heightStr ? parseInt(heightStr, 10) : NaN;
     res.setHeader('Content-Type', 'image/jpg');
     res.setHeader('Content-Length', ''); // Image size here
     res.setHeader('Access-Control-Allow-Origin', '*'); // If needs to be public
     res.send(yield (0, utilities_1.Imageprocessing)(filename, width, height));
+}));
+images.post('/images', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { filename, width, height } = (req.body || {});
+    const fileParam = filename || '';
+    const widthStr = width === undefined || width === null ? '' : String(width);
+    const heightStr = height === undefined || height === null ? '' : String(height);
+    const validationMessage = yield validateData(fileParam, widthStr, heightStr);
+    if (validationMessage) {
+        res.send(validationMessage);
+        return;
+    }
+    const parsedWidth = widthStr ? parseInt(widthStr, 10) : NaN;
+    const parsedHeight = heightStr ? parseInt(heightStr, 10) : NaN;
+    res.setHeader('Content-Type', 'image/jpg');
+    res.setHeader('Content-Length', '');
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.send(yield (0, utilities_1.Imageprocessing)(fileParam, parsedWidth, parsedHeight));
 }));
 exports.default = images;
