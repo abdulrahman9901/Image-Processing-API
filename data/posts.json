@@ -44,5 +44,56 @@
     "status": "published",
     "createdAt": "2025-08-24T08:57:56.449Z",
     "updatedAt": "2025-08-24T08:57:56.449Z"
+  },
+  {
+    "id": "post_1756026821284_d208ruryu",
+    "title": "The Art of Indoor Gardening: Growing Plants in Small Spaces",
+    "content": "Indoor gardening has become increasingly popular, especially for those living in apartments or homes with limited outdoor space. This comprehensive guide covers everything from selecting the right plants for low-light conditions to creating a thriving indoor ecosystem. Learn about soil selection, watering techniques, and how to maximize your growing potential even in the smallest spaces.",
+    "author": "Sarah Green",
+    "category": "Gardening",
+    "tags": [
+      "gardening",
+      "indoor",
+      "plants",
+      "apartment",
+      "sustainability"
+    ],
+    "status": "published",
+    "createdAt": "2025-08-24T09:13:41.284Z",
+    "updatedAt": "2025-08-24T09:13:41.284Z"
+  },
+  {
+    "id": "post_1756026828860_e84zynvdy",
+    "title": "Understanding Personal Finance: Building Wealth in Your 20s",
+    "content": "Starting your financial journey early can make a huge difference in your long-term wealth building. This guide covers essential topics like budgeting, emergency funds, investing basics, and the power of compound interest. Learn practical strategies for managing student loans, building credit, and setting up retirement accounts that will benefit you for decades to come.",
+    "author": "David Martinez",
+    "category": "Finance",
+    "tags": [
+      "finance",
+      "investing",
+      "budgeting",
+      "wealth",
+      "retirement"
+    ],
+    "status": "published",
+    "createdAt": "2025-08-24T09:13:48.860Z",
+    "updatedAt": "2025-08-24T09:13:48.860Z"
+  },
+  {
+    "id": "post_1756026835008_2f99sutse",
+    "title": "Learning Guitar: From Chords to Your First Song",
+    "content": "The guitar is one of the most accessible and rewarding instruments to learn. This beginner-friendly guide walks you through everything from holding the guitar properly and learning basic chords to playing your first complete song. Discover practice techniques, finger positioning, and how to build muscle memory that will have you playing confidently in just a few weeks.",
+    "author": "Alex Rivera",
+    "category": "Music",
+    "tags": [
+      "guitar",
+      "music",
+      "beginner",
+      "chords",
+      "practice"
+    ],
+    "status": "published",
+    "createdAt": "2025-08-24T09:13:55.008Z",
+    "updatedAt": "2025-08-24T09:13:55.008Z"
   }
 ]
