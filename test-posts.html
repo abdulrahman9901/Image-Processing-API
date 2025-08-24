@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posts API Test Interface</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, textarea, select, button {
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        input, textarea, select {
+            width: 100%;
+            box-sizing: border-box;
+        }
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 10px 20px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 4px;
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border-color: #f5c6cb;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border-color: #c3e6cb;
+        }
+        .post-item {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+        .post-meta {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 10px;
+        }
+        .tags {
+            margin-top: 5px;
+        }
+        .tag {
+            background-color: #007bff;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 12px;
+            font-size: 0.8em;
+            margin-right: 5px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Posts API Test Interface</h1>
+    
+    <div class="grid">
+        <div class="container">
+            <h2>Create New Post</h2>
+            <form id="createPostForm">
+                <div class="form-group">
+                    <label for="title">Title:</label>
+                    <input type="text" id="title" name="title" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="content">Content:</label>
+                    <textarea id="content" name="content" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="author">Author:</label>
+                    <input type="text" id="author" name="author" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="category">Category:</label>
+                    <input type="text" id="category" name="category" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="tags">Tags (comma-separated):</label>
+                    <input type="text" id="tags" name="tags" placeholder="e.g., tech, programming, tutorial">
+                </div>
+                
+                <div class="form-group">
+                    <label for="status">Status:</label>
+                    <select id="status" name="status">
+                        <option value="draft">Draft</option>
+                        <option value="published">Published</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="imageUrl">Image URL (optional):</label>
+                    <input type="url" id="imageUrl" name="imageUrl" placeholder="https://example.com/image.jpg">
+                </div>
+                
+                <button type="submit">Create Post</button>
+            </form>
+            
+            <div id="createResult"></div>
+        </div>
+        
+        <div class="container">
+            <h2>Search & Filter</h2>
+            
+            <div class="form-group">
+                <label for="searchQuery">Search Posts:</label>
+                <input type="text" id="searchQuery" placeholder="Search by title, content, or tags">
+                <button onclick="searchPosts()">Search</button>
+            </div>
+            
+            <div class="form-group">
+                <label for="filterCategory">Filter by Category:</label>
+                <select id="filterCategory">
+                    <option value="">All Categories</option>
+                </select>
+                <button onclick="filterPosts()">Filter</button>
+            </div>
+            
+            <div class="form-group">
+                <button onclick="loadCategories()">Load Categories</button>
+                <button onclick="loadTags()">Load Tags</button>
+                <button onclick="loadAllPosts()">Load All Posts</button>
+            </div>
+            
+            <div id="metaResult"></div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>Posts</h2>
+        <div id="postsContainer"></div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:3000/api';
+        
+        // Create post form handler
+        document.getElementById('createPostForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const postData = {
+                title: formData.get('title'),
+                content: formData.get('content'),
+                author: formData.get('author'),
+                category: formData.get('category'),
+                tags: formData.get('tags') ? formData.get('tags').split(',').map(tag => tag.trim()) : [],
+                status: formData.get('status'),
+                imageUrl: formData.get('imageUrl') || undefined
+            };
+            
+            try {
+                const response = await fetch(`${API_BASE}/posts`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(postData)
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    showResult('createResult', `Success! Post created: ${JSON.stringify(result, null, 2)}`, 'success');
+                    e.target.reset();
+                    loadAllPosts(); // Refresh posts list
+                } else {
+                    showResult('createResult', `Error: ${result.error}`, 'error');
+                }
+            } catch (error) {
+                showResult('createResult', `Network error: ${error.message}`, 'error');
+            }
+        });
+        
+        // Load all posts
+        async function loadAllPosts() {
+            try {
+                const response = await fetch(`${API_BASE}/posts`);
+                const result = await response.json();
+                
+                if (response.ok) {
+                    displayPosts(result.data);
+                } else {
+                    showResult('postsContainer', `Error: ${result.error}`, 'error');
+                }
+            } catch (error) {
+                showResult('postsContainer', `Network error: ${error.message}`, 'error');
+            }
+        }
+        
+        // Search posts
+        async function searchPosts() {
+            const query = document.getElementById('searchQuery').value.trim();
+            if (!query) {
+                alert('Please enter a search query');
+                return;
+            }
+            
+            try {
+                const response = await fetch(`${API_BASE}/posts/search/${encodeURIComponent(query)}`);
+                const result = await response.json();
+                
+                if (response.ok) {
+                    displayPosts(result.data);
+                    showResult('metaResult', `Found ${result.count} posts`, 'success');
+                } else {
+                    showResult('metaResult', `Error: ${result.error}`, 'error');
+                }
+            } catch (error) {
+                showResult('metaResult', `Network error: ${error.message}`, 'error');
+            }
+        }
+        
+        // Filter posts by category
+        async function filterPosts() {
+            const category = document.getElementById('filterCategory').value;
+            const url = category ? `${API_BASE}/posts?category=${encodeURIComponent(category)}` : `${API_BASE}/posts`;
+            
+            try {
+                const response = await fetch(url);
+                const result = await response.json();
+                
+                if (response.ok) {
+                    displayPosts(result.data);
+                    showResult('metaResult', `Showing ${result.data.length} posts`, 'success');
+                } else {
+                    showResult('metaResult', `Error: ${result.error}`, 'error');
+                }
+            } catch (error) {
+                showResult('metaResult', `Network error: ${error.message}`, 'error');
+            }
+        }
+        
+        // Load categories
+        async function loadCategories() {
+            try {
+                const response = await fetch(`${API_BASE}/posts/meta/categories`);
+                const result = await response.json();
+                
+                if (response.ok) {
+                    const select = document.getElementById('filterCategory');
+                    select.innerHTML = '<option value="">All Categories</option>';
+                    
+                    result.data.forEach(category => {
+                        const option = document.createElement('option');
+                        option.value = category;
+                        option.textContent = category;
+                        select.appendChild(option);
+                    });
+                    
+                    showResult('metaResult', `Loaded ${result.count} categories: ${result.data.join(', ')}`, 'success');
+                } else {
+                    showResult('metaResult', `Error: ${result.error}`, 'error');
+                }
+            } catch (error) {
+                showResult('metaResult', `Network error: ${error.message}`, 'error');
+            }
+        }
+        
+        // Load tags
+        async function loadTags() {
+            try {
+                const response = await fetch(`${API_BASE}/posts/meta/tags`);
+                const result = await response.json();
+                
+                if (response.ok) {
+                    showResult('metaResult', `Available tags (${result.count}): ${result.data.join(', ')}`, 'success');
+                } else {
+                    showResult('metaResult', `Error: ${result.error}`, 'error');
+                }
+            } catch (error) {
+                showResult('metaResult', `Network error: ${error.message}`, 'error');
+            }
+        }
+        
+        // Display posts
+        function displayPosts(posts) {
+            const container = document.getElementById('postsContainer');
+            
+            if (posts.length === 0) {
+                container.innerHTML = '<p>No posts found.</p>';
+                return;
+            }
+            
+            container.innerHTML = posts.map(post => `
+                <div class="post-item">
+                    <h3>${post.title}</h3>
+                    <p>${post.content}</p>
+                    <div class="post-meta">
+                        <strong>Author:</strong> ${post.author} | 
+                        <strong>Category:</strong> ${post.category} | 
+                        <strong>Status:</strong> ${post.status} | 
+                        <strong>Created:</strong> ${new Date(post.createdAt).toLocaleString()}
+                    </div>
+                    <div class="tags">
+                        ${post.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                    </div>
+                    <div style="margin-top: 10px;">
+                        <button onclick="editPost('${post.id}')">Edit</button>
+                        <button onclick="deletePost('${post.id}')" style="background-color: #dc3545;">Delete</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        // Delete post
+        async function deletePost(id) {
+            if (!confirm('Are you sure you want to delete this post?')) {
+                return;
+            }
+            
+            try {
+                const response = await fetch(`${API_BASE}/posts/${id}`, {
+                    method: 'DELETE'
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    alert('Post deleted successfully!');
+                    loadAllPosts(); // Refresh posts list
+                } else {
+                    alert(`Error: ${result.error}`);
+                }
+            } catch (error) {
+                alert(`Network error: ${error.message}`);
+            }
+        }
+        
+        // Edit post (simplified - just shows current data)
+        async function editPost(id) {
+            try {
+                const response = await fetch(`${API_BASE}/posts/${id}`);
+                const result = await response.json();
+                
+                if (response.ok) {
+                    const post = result.data;
+                    const newTitle = prompt('Edit title:', post.title);
+                    const newContent = prompt('Edit content:', post.content);
+                    
+                    if (newTitle !== null && newContent !== null) {
+                        const updateResponse = await fetch(`${API_BASE}/posts/${id}`, {
+                            method: 'PUT',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                title: newTitle,
+                                content: newContent,
+                                author: post.author,
+                                category: post.category,
+                                tags: post.tags,
+                                status: post.status
+                            })
+                        });
+                        
+                        const updateResult = await updateResponse.json();
+                        
+                        if (updateResponse.ok) {
+                            alert('Post updated successfully!');
+                            loadAllPosts(); // Refresh posts list
+                        } else {
+                            alert(`Update error: ${updateResult.error}`);
+                        }
+                    }
+                } else {
+                    alert(`Error: ${result.error}`);
+                }
+            } catch (error) {
+                alert(`Network error: ${error.message}`);
+            }
+        }
+        
+        // Utility function to show results
+        function showResult(elementId, message, type) {
+            document.getElementById(elementId).innerHTML = 
+                `<div class="result ${type}"><pre>${message}</pre></div>`;
+        }
+        
+        // Load posts and categories on page load
+        window.onload = function() {
+            loadAllPosts();
+            loadCategories();
+        };
+    </script>
+</body>
+</html>
