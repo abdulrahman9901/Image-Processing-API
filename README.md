@@ -14,7 +14,7 @@ the API you create will handle resizing and serving stored images for you.
 
 ## API Reference
 
-#### Resize an image
+#### Resize an existing image
 
 ```http
   GET /api/images
@@ -22,9 +22,31 @@ the API you create will handle resizing and serving stored images for you.
 
 | Parameter | Type     | Description                |
 | :-------- | :------- | :------------------------- |
-| `filename` | `string` | **Required**. Image name to resize |
+| `filename` | `string` | **Required**. Image name to resize (without extension) |
 | `height` | `number` | **Required**. Image height |
 | `width` | `number` | **Required**. Image width |
+
+#### Upload a new image
+
+```http
+  POST /api/images
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `image` | `file` | **Required**. Image file to upload (form-data) |
+| `autoProcess` | `boolean` | **Optional**. Auto-process image during upload |
+| `width` | `number` | **Optional**. Width for auto-processing |
+| `height` | `number` | **Optional**. Height for auto-processing |
+| `quality` | `number` | **Optional**. Quality for auto-processing (1-100) |
+
+#### List all available images
+
+```http
+  GET /api/images/list
+```
+
+Returns a JSON list of all available images in the system.
 
 
 
@@ -78,13 +100,28 @@ To run tests, run the following command
 
 ## Usage/Examples
 
-At this moment the project will be running at ypur local server 3000
-unless you changed it so to use it you need to provide a name for jpg
-image that must be in assets/full folder also provide height and width 
-that are larger than 0
- 
+The project will be running at your local server port 3000 unless you changed it.
+
+### Resize existing images:
 ```http
 http://localhost:3000/api/images?filename=icelandwaterfall&height=100&width=300
-
 ```
+
+### Upload new images:
+```bash
+curl -X POST \
+  http://localhost:3000/api/images \
+  -F "image=@/path/to/your/image.jpg" \
+  -F "autoProcess=true" \
+  -F "width=500" \
+  -F "height=300"
+```
+
+### List available images:
+```http
+http://localhost:3000/api/images/list
+```
+
+### Test the functionality:
+Open `test-upload.html` in your browser for a visual interface to test all endpoints.
 
