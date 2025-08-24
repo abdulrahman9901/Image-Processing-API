@@ -11,5 +11,6 @@ exports.app = app;
 const port = 3000;
 const getPort = () => port;
 exports.getPort = getPort;
+app.use(express_1.default.json());
 app.use('/', index_1.default);
 app.listen(port, () => console.log(`server running on port ${port}`));

@@ -42,15 +42,18 @@ const validateData = (filename, inwidth, inheight) => __awaiter(void 0, void 0, 
     return null;
 });
 images.get('/images', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const NotvalidData = yield validateData(req.query.filename, req.query.width, req.query.height);
+    const filenameParam = req.query.filename || '';
+    const widthParam = req.query.width || '';
+    const heightParam = req.query.height || '';
+    const NotvalidData = yield validateData(filenameParam, widthParam, heightParam);
     if (NotvalidData) {
         console.log(NotvalidData);
         res.send(NotvalidData);
         return;
     }
-    const filename = req.query.filename;
-    const height = +req.query.height;
-    const width = +req.query.width;
+    const filename = filenameParam;
+    const height = parseInt(heightParam || '');
+    const width = parseInt(widthParam || '');
     res.setHeader('Content-Type', 'image/jpg');
     res.setHeader('Content-Length', ''); // Image size here
     res.setHeader('Access-Control-Allow-Origin', '*'); // If needs to be public
