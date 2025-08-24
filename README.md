@@ -1,18 +1,29 @@
 
-# Image Processing API
+# Image Processing & Posts API
 
 ## A brief description of what this project does
 
-In his project i have built an API that can be used in two different ways.
-As a simple placeholder API, the first allows you to place images
-into your frontend with the size set via URL parameters (and additional stylization if you choose) for rapid prototyping. 
-The second use case is as a library to serve properly scaled versions of your images to the front end to reduce page load size.
-Rather than needing to resize and upload multiple copies of the same image to be used throughout your site,
-the API you create will handle resizing and serving stored images for you. 
+This project provides a comprehensive API that serves two main purposes:
+
+### Image Processing
+An API that can be used in two different ways:
+- As a simple placeholder API that allows you to place images into your frontend with the size set via URL parameters for rapid prototyping
+- As a library to serve properly scaled versions of your images to reduce page load size
+Rather than needing to resize and upload multiple copies of the same image, the API handles resizing and serving stored images for you.
+
+### Posts Management
+A complete posts/blog system that allows you to:
+- Create, read, update, and delete posts with rich metadata
+- Organize posts by categories and tags
+- Search through posts by title, content, or tags
+- Filter posts by various criteria
+- Support for draft and published statuses 
 
 
 
 ## API Reference
+
+### Image Processing Endpoints
 
 #### Resize an existing image
 
@@ -47,6 +58,83 @@ the API you create will handle resizing and serving stored images for you.
 ```
 
 Returns a JSON list of all available images in the system.
+
+### Posts Management Endpoints
+
+#### Create a new post
+
+```http
+  POST /api/posts
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `title` | `string` | **Required**. Post title |
+| `content` | `string` | **Required**. Post content |
+| `author` | `string` | **Required**. Author name |
+| `category` | `string` | **Required**. Post category |
+| `tags` | `array` | **Optional**. Array of tags |
+| `status` | `string` | **Optional**. "draft" or "published" (default: "draft") |
+| `imageUrl` | `string` | **Optional**. Featured image URL |
+
+#### Get all posts
+
+```http
+  GET /api/posts
+```
+
+| Parameter | Type     | Description                |
+| :-------- | :------- | :------------------------- |
+| `category` | `string` | **Optional**. Filter by category |
+| `status` | `string` | **Optional**. Filter by status ("draft" or "published") |
+| `author` | `string` | **Optional**. Filter by author |
+| `tag` | `string` | **Optional**. Filter by tag |
+| `limit` | `number` | **Optional**. Number of posts per page (default: 10) |
+| `offset` | `number` | **Optional**. Number of posts to skip (default: 0) |
+
+#### Get a specific post
+
+```http
+  GET /api/posts/:id
+```
+
+#### Update a post
+
+```http
+  PUT /api/posts/:id
+```
+
+Same parameters as create post (all optional for updates).
+
+#### Delete a post
+
+```http
+  DELETE /api/posts/:id
+```
+
+#### Search posts
+
+```http
+  GET /api/posts/search/:query
+```
+
+Searches through post titles, content, and tags.
+
+#### Get categories
+
+```http
+  GET /api/posts/meta/categories
+```
+
+Returns all unique categories.
+
+#### Get tags
+
+```http
+  GET /api/posts/meta/tags
+```
+
+Returns all unique tags.
 
 
 
@@ -123,5 +211,33 @@ http://localhost:3000/api/images/list
 ```
 
 ### Test the functionality:
-Open `test-upload.html` in your browser for a visual interface to test all endpoints.
+- Open `test-upload.html` in your browser to test image processing endpoints
+- Open `test-posts.html` in your browser to test posts management endpoints
+
+### API Response Format:
+All API endpoints return JSON responses with a consistent format:
+```json
+{
+  "success": true|false,
+  "message": "Human readable message",
+  "data": {...},
+  "error": "Error message (if success is false)"
+}
+```
+
+### Posts Data Structure:
+```json
+{
+  "id": "unique_post_id",
+  "title": "Post Title",
+  "content": "Post content...",
+  "author": "Author Name",
+  "category": "Category",
+  "tags": ["tag1", "tag2"],
+  "status": "published",
+  "imageUrl": "optional_image_url",
+  "createdAt": "2024-01-01T00:00:00.000Z",
+  "updatedAt": "2024-01-01T00:00:00.000Z"
+}
+```
 

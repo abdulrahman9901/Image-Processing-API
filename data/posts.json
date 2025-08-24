@@ -1,0 +1,48 @@
+[
+  {
+    "id": "post_1756025764752_3nb7ser1j",
+    "title": "My First Tech Blog Post",
+    "content": "This is the content of my first blog post about technology trends.",
+    "author": "John Doe",
+    "category": "Technology",
+    "tags": [
+      "tech",
+      "trends",
+      "innovation"
+    ],
+    "status": "published",
+    "createdAt": "2025-08-24T08:56:04.752Z",
+    "updatedAt": "2025-08-24T08:56:04.752Z"
+  },
+  {
+    "id": "post_1756025773632_h8j2jcysn",
+    "title": "Cooking Made Simple",
+    "content": "Learn the basics of cooking with simple recipes and techniques that anyone can master.",
+    "author": "Jane Smith",
+    "category": "Lifestyle",
+    "tags": [
+      "cooking",
+      "recipes",
+      "beginner"
+    ],
+    "status": "published",
+    "createdAt": "2025-08-24T08:56:13.632Z",
+    "updatedAt": "2025-08-24T08:56:13.632Z"
+  },
+  {
+    "id": "post_1756025876449_yt5x9ylkk",
+    "title": "Photography Tips for Beginners",
+    "content": "Learn the basic principles of photography including composition, lighting, and camera settings. Perfect for those starting their photography journey.",
+    "author": "Mike Johnson",
+    "category": "Photography",
+    "tags": [
+      "photography",
+      "tips",
+      "camera",
+      "beginner"
+    ],
+    "status": "published",
+    "createdAt": "2025-08-24T08:57:56.449Z",
+    "updatedAt": "2025-08-24T08:57:56.449Z"
+  }
+]
