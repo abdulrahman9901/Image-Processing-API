@@ -46,7 +46,7 @@ async function streamToBuffer(body: unknown): Promise<Buffer> {
     for await (const chunk of stream) {
         chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
     }
-    return Buffer.concat(chunks);
+    return Buffer.concat(chunks as readonly Uint8Array[]);
 }
 
 function s3Configured(): boolean {
