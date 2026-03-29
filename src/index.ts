@@ -9,6 +9,7 @@ const getPort = (): number => port;
 
 app.use('/', routes);
 
-app.listen(port, () => console.log(`server running on port ${port}`));
+const host = process.env.HOST || '0.0.0.0';
+app.listen(port, host, () => console.log(`server running on ${host}:${port}`));
 
 export { app, getPort };

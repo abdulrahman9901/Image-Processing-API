@@ -38,7 +38,8 @@
     "build": "npx tsc",
     "jasmine": "jasmine",
     "start-dev": "nodemon src/index.ts",
-    "start-prod": "node build/index.js"
+    "start-prod": "node build/index.js",
+    "start": "node build/index.js"
   },
   "author": "Abdulrahman Badr",
   "license": "ISC"

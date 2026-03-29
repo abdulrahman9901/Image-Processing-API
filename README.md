@@ -58,13 +58,17 @@ Copy `.env.example` to `.env` and load it with your process manager or `dotenv` 
 
 If `key` is used but S3 is not configured, the API returns **500** (`storage not configured for key-based access`).
 
+## Deployment (production)
+
+For hosted environments (Docker, Northflank, Railway, etc.): build, then run **`npm start`** (or `npm run start-prod`). Set **`PORT`** and S3 variables in the platform’s environment. See **[DEPLOYMENT.md](DEPLOYMENT.md)** for Docker, health checks, and Lets-Chat `VITE_IMAGE_PROCESSING_BASE_URL` notes.
+
 ## Scripts
 
 | Command | Description |
 | :--- | :--- |
 | `npm run build` | Compile TypeScript to `build/`. |
+| `npm start` / `npm run start-prod` | Run compiled `build/index.js` (use after `build` for deployment). |
 | `npm run start-dev` | Dev server with nodemon on `src/index.ts`. |
-| `npm run start-prod` | Run compiled `build/index.js`. |
 | `npm test` | Build and run Jasmine specs. |
 | `npm run lint` | ESLint on `.ts` sources. |
 

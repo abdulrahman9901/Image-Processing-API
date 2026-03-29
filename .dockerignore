@@ -1,0 +1,9 @@
+node_modules
+build
+.git
+.gitignore
+assets/thumb
+.env
+.env.*
+*.md
+!README.md
